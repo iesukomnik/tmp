@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>質數判定器</title>
+</head>
+<body>
+    <h1>質數判定器</h1>
+    <form id="primeForm">
+        <label for="number">輸入一個數字:</label>
+        <input type="number" id="number"><br>
+        <button type="button" onclick="checkPrime()">檢查</button>
+    </form>
+    <p id="result"></p>
+
+    <script>
+        function checkPrime() {
+            const number = parseInt(document.getElementById("number").value);
+
+            if (isNaN(number) || number <= 1) {
+                document.getElementById("result").textContent = "請輸入大於1的有效數字。";
+            } else if (isPrime(number)) {
+                document.getElementById("result").textContent = `${number} 是質數。`;
+            } else {
+                document.getElementById("result").textContent = `${number} 不是質數。`;
+            }
+        }
+
+        function isPrime(num) {
+            if (num <= 1) {
+                return false;
+            }
+            if (num <= 3) {
+                return true;
+            }
+            if (num % 2 === 0 || num % 3 === 0) {
+                return false;
+            }
+
+            for (let i = 5; i * i <= num; i += 6) {
+                if (num % i === 0 || num % (i + 2) === 0) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
+

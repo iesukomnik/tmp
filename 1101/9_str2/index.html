@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>科目平均成績</title>
+</head>
+<body>
+    <h1>科目平均成績</h1>
+    <p>輸入成績: "eng:20;phy:90;math:100"</p>
+    <form id="subjectForm">
+        <label for="subjectName">輸入科目名稱:</label>
+        <input type="text" id="subjectName">
+        <button type="button" onclick="calculateAverage()">計算平均</button>
+    </form>
+    <p id="result"></p>
+
+    <script>
+        const dataString = "eng:20;phy:90;math:100";
+        const data = parseDataString(dataString);
+
+        function parseDataString(dataString) {
+            const subjectArray = dataString.split(";");
+            const data = [];
+
+            for (let i = 0; i < subjectArray.length; i++) {
+                const subjectInfo = subjectArray[i].split(":");
+                const subject = subjectInfo[0];
+                const grade = parseInt(subjectInfo[1]);
+                data.push({ sub: subject, grade: grade });
+            }
+
+            return data;
+        }
+
+        function calculateAverage() {
+            const subjectName = document.getElementById("subjectName").value;
+            const resultElement = document.getElementById("result");
+            let sum = 0;
+            let count = 0;
+
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].sub === subjectName) {
+                    sum += data[i].grade;
+                    count++;
+                }
+            }
+
+            if (count === 0) {
+                resultElement.textContent = "找不到此科目";
+            } else {
+                const average = (sum / count).toFixed(2);
+                resultElement.textContent = `${subjectName} 的平均成績為: ${average}`;
+            }
+        }
+    </script>
+</body>
+</html>
+

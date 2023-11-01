@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>城市人口過濾器</title>
+</head>
+<body>
+    <h1>城市人口過濾器</h1>
+    <p>以下是人口小於 300 萬的城市：</p>
+    <ul id="filteredCities"></ul>
+
+    <script>
+        let cities = [
+            {name: '洛杉磯', population: 3792621},
+            {name: '紐約', population: 8175133},
+            {name: '芝加哥', population: 2695598},
+            {name: '休士頓', population: 2099451},
+            {name: '費城', population: 1526006}
+        ];
+
+        // 使用 array.filter 過濾人口小於 300 萬的城市
+        const filteredCities = cities.filter(city => city.population < 3000000);
+
+        const filteredCitiesList = document.getElementById("filteredCities");
+
+        filteredCities.forEach(city => {
+            const listItem = document.createElement("li");
+            listItem.textContent = city.name;
+            filteredCitiesList.appendChild(listItem);
+        });
+    </script>
+</body>
+</html>
+

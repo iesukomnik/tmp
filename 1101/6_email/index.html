@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>身份證與郵件檢查器</title>
+</head>
+<body>
+    <h1>身份證與郵件檢查器</h1>
+    <form id="verificationForm">
+        <label for="idNumber">身份證:</label>
+        <input type="text" id="idNumber" onchange="checkIdNumber()"><br>
+        <label for="email">郵件:</label>
+        <input type="email" id="email" onchange="checkEmail()"><br>
+        <button type="button" onclick="validateForm()">提交</button>
+    </form>
+    <p id="idNumberResult"></p>
+    <p id="emailResult"></p>
+
+    <script>
+        function checkIdNumber() {
+            const idNumberInput = document.getElementById("idNumber");
+            const idNumber = idNumberInput.value;
+
+            if (/^[a-zA-Z][12]\d{8}$/.test(idNumber)) {
+                document.getElementById("idNumberResult").textContent = "身份證格式正確";
+            } else {
+                document.getElementById("idNumberResult").textContent = "身份證格式不正確";
+            }
+        }
+
+        function checkEmail() {
+            const emailInput = document.getElementById("email");
+            const email = emailInput.value;
+
+            if (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+                document.getElementById("emailResult").textContent = "郵件格式正確";
+            } else {
+                document.getElementById("emailResult").textContent = "郵件格式不正確";
+            }
+        }
+
+        function validateForm() {
+            checkIdNumber();
+            checkEmail();
+        }
+    </script>
+</body>
+</html>
+

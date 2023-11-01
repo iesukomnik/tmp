@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>驗證郵箱</title>
+</head>
+<body>
+    <h1>驗證郵箱</h1>
+    <label for="email">輸入郵箱：</label>
+    <input type="text" id="email" placeholder="輸入郵箱">
+    <button type="button" onclick="validateEmail()">驗證</button>
+    <p id="result"></p>
+
+    <script>
+        function validateEmail() {
+            const email = document.getElementById("email").value;
+            const resultElement = document.getElementById("result");
+            
+            // 正規表達式來驗證郵箱格式
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            if (emailPattern.test(email)) {
+                resultElement.textContent = "合格的郵箱。";
+            } else {
+                resultElement.textContent = "錯誤的郵箱格式。";
+            }
+        }
+    </script>
+</body>
+</html>
+

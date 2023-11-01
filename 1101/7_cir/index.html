@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>字串環</title>
+</head>
+<body>
+    <h1>字串環</h1>
+    <p id="output">IECS FCU</p>
+    <button type="button" onclick="rotateString()">按一下</button>
+
+    <script>
+        function rotateString() {
+            const outputElement = document.getElementById("output");
+            const currentString = outputElement.textContent;
+            const rotatedString = rotateStringOnce(currentString);
+            outputElement.textContent = rotatedString;
+        }
+
+        function rotateStringOnce(str) {
+            // 将字符串的第一个字符移到末尾
+            return str.slice(1) + str.charAt(0);
+        }
+    </script>
+</body>
+</html>
+

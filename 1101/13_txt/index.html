@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>提取副檔名</title>
+</head>
+<body>
+    <h1>提取副檔名</h1>
+    <label for="filename">輸入檔名:</label>
+    <input type="text" id="filename" placeholder="輸入檔名">
+    <button type="button" onclick="extractExtension()">提取副檔名</button>
+    <p id="result"></p>
+
+    <script>
+        function extractExtension() {
+            const filename = document.getElementById("filename").value;
+            const resultElement = document.getElementById("result");
+            
+            const lastIndex = filename.lastIndexOf('.');
+            if (lastIndex === -1) {
+                resultElement.textContent = "副檔名不存在";
+            } else {
+                const extension = filename.substring(lastIndex + 1);
+                resultElement.textContent = "副檔名: " + extension;
+            }
+        }
+    </script>
+</body>
+</html>
+

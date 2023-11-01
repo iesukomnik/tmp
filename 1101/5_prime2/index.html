@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>質數列表</title>
+</head>
+<body>
+    <h1>質數列表</h1>
+    <form id="primeListForm">
+        <label for="limit">輸入一個數字:</label>
+        <input type="number" id="limit"><br>
+        <button type="button" onclick="listPrimes()">列出質數</button>
+    </form>
+    <p id="primeList"></p>
+
+    <script>
+        function listPrimes() {
+            const limit = parseInt(document.getElementById("limit").value);
+            let primeList = [];
+
+            if (isNaN(limit) || limit < 2) {
+                document.getElementById("primeList").textContent = "請輸入大於等於2的有效數字。";
+            } else {
+                for (let num = 2; num <= limit; num++) {
+                    let isPrime = true;
+
+                    for (let i = 2; i <= Math.sqrt(num); i++) {
+                        if (num % i === 0) {
+                            isPrime = false;
+                            break;
+                        }
+                    }
+
+                    if (isPrime) {
+                        primeList.push(num);
+                    }
+                }
+
+                document.getElementById("primeList").textContent = "不大於" + limit + "的質數列表: " + primeList.join(", ");
+            }
+        }
+    </script>
+</body>
+</html>
+

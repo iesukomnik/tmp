@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>成績計算器</title>
+</head>
+<body>
+    <h1>成績計算器</h1>
+
+    <div id="output"></div>
+
+    <script>
+        // 隨機生成成績數據
+        function generateRandomGrades() {
+            let grades = [];
+            for (let i = 0; i < 3; i++) {
+                let studentGrades = [];
+                for (let j = 0; j < 3; j++) {
+                    studentGrades.push(Math.floor(Math.random() * 101));
+                }
+                grades.push(studentGrades);
+            }
+            return grades;
+        }
+
+        // 定義姓名和科目數據
+        let names = ['學生1', '學生2', '學生3'];
+        let subjects = ['科目1', '科目2', '科目3'];
+
+        // 計算各科平均成績
+        function calculateSubjectAverages(grades) {
+            let subjectAverages = [];
+            for (let j = 0; j < grades[0].length; j++) {
+                let sum = 0;
+                for (let i = 0; i < grades.length; i++) {
+                    sum += grades[i][j];
+                }
+                let average = sum / grades.length;
+                subjectAverages.push(average.toFixed(2));
+            }
+            return subjectAverages;
+        }
+
+        // 計算每個人的平均成績
+        function calculateStudentAverages(grades) {
+            let studentAverages = [];
+            for (let i = 0; i < grades.length; i++) {
+                let sum = 0;
+                for (let j = 0; j < grades[i].length; j++) {
+                    sum += grades[i][j];
+                }
+                let average = sum / grades[i].length;
+                studentAverages.push(average.toFixed(2));
+            }
+            return studentAverages;
+        }
+
+        // 找出各科最高分對應的學生姓名
+        function findTopScorers(grades, names) {
+            let topScorers = [];
+            for (let j = 0; j < grades[0].length; j++) {
+                let maxScore = -1;
+                let topScorer = '';
+                for (let i = 0; i < grades.length; i++) {
+                    if (grades[i][j] > maxScore) {
+                        maxScore = grades[i][j];
+                        topScorer = names[i];
+                    }
+                }
+                topScorers.push(topScorer);
+            }
+            return topScorers;
+        }
+
+        // 獲得隨機成績數據
+        let grades = generateRandomGrades();
+
+        // 計算各科平均成績
+        let subjectAverages = calculateSubjectAverages(grades);
+
+        // 計算每個人的平均成績
+        let studentAverages = calculateStudentAverages(grades);
+
+        // 找出各科最高分對應的學生姓名
+        let topScorers = findTopScorers(grades, names);
+
+        // 顯示結果
+        let output = document.getElementById("output");
+output.innerHTML = "<p>各科平均成績：</p>";
+for (let i = 0; i < subjects.length; i++) {
+    output.innerHTML += "<p>" + subjects[i] + ": " + subjectAverages[i] + "</p>";
+}
+output.innerHTML += "<p>每個人的平均成績：" + studentAverages.join(', ') + "</p>";
+output.innerHTML += "<p>各科最高分對應的學生姓名：" + topScorers.join(', ') + "</p>";
+    </script>
+</body>
+</html>
+

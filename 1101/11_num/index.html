@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>猜數字遊戲</title>
+</head>
+<body>
+    <h1>猜數字遊戲</h1>
+    <p>我已經選擇一個1到100的隨機數字。試著猜中它！</p>
+    <input type="number" id="guess" min="1" max="100">
+    <button type="button" onclick="checkGuess()">猜數字</button>
+    <p id="message"></p>
+    <p id="attempts"></p>
+
+    <script>
+        const minNumber = 1;
+        const maxNumber = 100;
+        const randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
+        let attempts = 0;
+
+        function checkGuess() {
+            const guess = parseInt(document.getElementById("guess").value);
+            const messageElement = document.getElementById("message");
+            const attemptsElement = document.getElementById("attempts");
+            attempts++;
+
+            if (isNaN(guess) || guess < minNumber || guess > maxNumber) {
+                messageElement.textContent = "請輸入有效的數字（1-100之間）。";
+            } else if (guess < randomNumber) {
+                messageElement.textContent = "太低了，再試一次。";
+            } else if (guess > randomNumber) {
+                messageElement.textContent = "太高了，再試一次。";
+            } else {
+                messageElement.textContent = `恭喜！你猜中了數字 ${randomNumber}！`;
+                attemptsElement.textContent = `你共猜了 ${attempts} 次。`;
+            }
+        }
+    </script>
+</body>
+</html>
+

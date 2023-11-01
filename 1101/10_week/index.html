@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>星期判定器</title>
+</head>
+<body>
+    <h1>星期判定器</h1>
+    <form id="dayOfWeekForm">
+        <label for="month">輸入月份:</label>
+        <input type="number" id="month" min="1" max="12"><br>
+        <label for="day">輸入日期:</label>
+        <input type="number" id="day" min="1" max="31"><br>
+        <button type="button" onclick="calculateDayOfWeek()">計算星期</button>
+    </form>
+    <p id="result"></p>
+
+    <script>
+        function calculateDayOfWeek() {
+            const month = parseInt(document.getElementById("month").value);
+            const day = parseInt(document.getElementById("day").value);
+            const resultElement = document.getElementById("result");
+
+            if (isNaN(month) || isNaN(day) || month < 1 || month > 12 || day < 1 || day > 31) {
+                resultElement.textContent = "請輸入有效的月份和日期。";
+            } else {
+                const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+                const daysOfWeek = ["星期六", "星期日", "星期一", "星期二", "星期三", "星期四", "星期五"];
+
+                let totalDays = day;
+                for (let i = 1; i < month; i++) {
+                    totalDays += daysInMonth[i - 1];
+                }
+
+                const dayOfWeekIndex = (totalDays + 4) % 7;  // 2021/1/1 是星期五
+
+                resultElement.textContent = `2021/${month}/${day} 是${daysOfWeek[dayOfWeekIndex]}`;
+            }
+        }
+    </script>
+</body>
+</html>
+

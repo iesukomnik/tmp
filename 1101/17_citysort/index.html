@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>城市人口排序器</title>
+</head>
+<body>
+    <h1>城市人口排序器</h1>
+    <p>以下是人口小於 300 萬的城市，按照人口从少到多排序：</p>
+    <ul id="sortedCities"></ul>
+
+    <script>
+        let cities = [
+            {name: 'Los Angeles', population: 3792621},
+            {name: 'New York', population: 8175133},
+            {name: 'Chicago', population: 2695598},
+            {name: 'Houston', population: 2099451},
+            {name: 'Philadelphia', population: 1526006}
+        ];
+
+        // 使用 array.filter 篩選人口小於 300 萬的城市
+        const filteredCities = cities.filter(city => city.population < 3000000);
+
+        // 使用 array.sort 排序城市，从人口少到多
+        const sortedCities = filteredCities.sort((a, b) => a.population - b.population);
+
+        const sortedCitiesList = document.getElementById("sortedCities");
+
+        // 使用 array.map 输出城市名与人口数
+        sortedCities.map(city => {
+            const listItem = document.createElement("li");
+            listItem.textContent = `${city.name} - 人口：${city.population}`;
+            sortedCitiesList.appendChild(listItem);
+        });
+    </script>
+</body>
+</html>
+

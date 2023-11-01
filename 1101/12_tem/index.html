@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>溫度轉換</title>
+</head>
+<body>
+    <h1>攝氏轉華氏溫度</h1>
+    <p>輸入攝氏溫度:</p>
+    <input type="text" id="celsiusTemperatures" placeholder="輸入溫度，用逗號分隔">
+    <button type="button" onclick="convertCelsiusToFahrenheit()">轉換</button>
+    <p id="result"></p>
+
+    <script>
+        function convertCelsiusToFahrenheit() {
+            const celsiusInput = document.getElementById("celsiusTemperatures").value;
+            const celsiusArray = celsiusInput.split(",").map(temp => parseFloat(temp));
+            const fahrenheitArray = celsiusArray.map(celsius => (celsius * 9/5) + 32);
+
+            const resultElement = document.getElementById("result");
+            resultElement.textContent = "華氏溫度: " + fahrenheitArray.join(", ");
+        }
+    </script>
+</body>
+</html>
+

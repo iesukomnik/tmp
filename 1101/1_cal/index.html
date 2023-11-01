@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>乘法和除法計算機</title>
+</head>
+<body>
+    <h1>乘法和除法計算機</h1>
+    <form id="calculatorForm">
+        <label for="num1">輸入第一個數字:</label>
+        <input type="number" id="num1" step="0.01"><br>
+        <label for="num2">輸入第二個數字:</label>
+        <input type="number" id="num2" step="0.01"><br>
+        <label>選擇操作:</label>
+        <input type="radio" name="operation" value="multiply">乘法
+        <input type="radio" name="operation" value="divide">除法<br>
+        <button type="button" onclick="calculateResult()">計算</button>
+    </form>
+
+    <script>
+        function calculateResult() {
+            const num1 = parseFloat(document.getElementById("num1").value);
+            const num2 = parseFloat(document.getElementById("num2").value);
+            const operation = document.querySelector('input[name="operation"]:checked').value;
+            let result;
+
+            if (isNaN(num1) || isNaN(num2)) {
+                result = "請輸入有效數字。";
+            } else {
+                if (operation === "multiply") {
+                    result = (num1 * num2).toFixed(2);
+                } else if (operation === "divide") {
+                    if (num2 === 0) {
+                        result = "除數不能為零。";
+                    } else {
+                        result = (num1 / num2).toFixed(2);
+                    }
+                }
+            }
+
+            console.log("結果: " + result);
+        }
+    </script>
+</body>
+</html>
+
